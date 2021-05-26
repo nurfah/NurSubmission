@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Nur Submission</string>
+    <string name="network_name">Perangkat Jaringan</string>
+    <string name="detail">Detail</string>
+    <string name="profil">Profil</string>
+    <string name="id_name">Nama</string>
+    <string name="my_name">Nur Fahrudin</string>
+    <string name="id_email">Email</string>
+    <string name="email">nurfahrudin01@gmail.com</string>
+    <string name="kirim">Kirim Email</string>
+    <string name="detailspesefikasi">detail spesifikasi</string>
+    <string name="namajaringan">Nama Perangkat</string>
+    <string name="spesifikasi">Spesifikasi</string>
+    <string name="beli">Masukkan Kranjang</string>
+</resources>
