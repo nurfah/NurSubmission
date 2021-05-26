@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -37,11 +39,14 @@ class ListNetworkAdapter(val listNetwork : ArrayList<Alat_jaringan>): RecyclerVi
         holder.tvName.text = alatJaringan.name
         holder.tvDetail.text = alatJaringan.detail
         holder.itemView.setOnClickListener {
+
             val context= holder.itemView.context
+//            Toast.makeText(context,"dipencet",Toast.LENGTH_SHORT).show()
             val detailActivity = Intent(context, DetailActivity::class.java)
             detailActivity.putExtra(DetailActivity.DATA_NAMA, alatJaringan.name)
             detailActivity.putExtra(DetailActivity.DATA_DETAIL, alatJaringan.detail)
             detailActivity.putExtra(DetailActivity.DATA_GAMBAR, alatJaringan.photo)
+//            startActivity(DetailActivity)
             context.startActivity(detailActivity)
         }
     }

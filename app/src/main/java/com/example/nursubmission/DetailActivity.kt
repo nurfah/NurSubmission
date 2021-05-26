@@ -2,6 +2,7 @@ package com.example.nursubmission
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -16,9 +17,10 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var loadnama: TextView
     private lateinit var loadspek: TextView
     private lateinit var networkNameClass : String
-
     private lateinit var rvNetwork: RecyclerView
     private var list: ArrayList<Alat_jaringan> = arrayListOf()
+    private var namajaringan: String?=""
+
 
     companion object {
         const val DATA_GAMBAR = "data_gambar"
@@ -26,18 +28,30 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener{
         const val DATA_DETAIL = "data_detail"
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setActionBarTitle("Informasi detail")
 
-        val namajaringan = intent.getStringExtra(DATA_NAMA)
-        val gambarjaringan = intent.getIntExtra(DATA_GAMBAR, 0)
+        val context= this
+         this.namajaringan = intent.getStringExtra(DATA_NAMA)
+        loadnama = findViewById(R.id.tv_nama_perangkat)
+        loadnama.text= namajaringan
+
+        Toast.makeText(context,namajaringan,Toast.LENGTH_SHORT).show()
+
         val jaringandetail = intent.getStringExtra(DATA_DETAIL)
-        loadgambar = findViewById(R.id.tv_nama_perangkat)
+        loadspek = findViewById(R.id.detail_spesifikasi)
+        loadspek.text= jaringandetail
+
+        val gambarjaringan = intent.getIntExtra(DATA_GAMBAR, 0)
+        loadgambar = findViewById(R.id.iv_photo)
         loadgambar.setImageResource(gambarjaringan)
-        setDetailInformation(networkNameClass, jaringandetail)
+
+        var btn1: Button?=findViewById(R.id.keranjang);
+        btn1?.setOnClickListener {
+            Toast.makeText(this,namajaringan +"telah dimasukkan ke keranjang ",Toast.LENGTH_SHORT).show()
+        }
 
     }
     private fun setActionBarTitle(title: String) {
@@ -46,17 +60,16 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener{
         }
     }
 
-    override fun onClick(v: View) {
-        when(v.id){
-            R.id.keranjang ->{
-                Toast.makeText(this,  "telah dimasukkan ke keranjang "  , Toast.LENGTH_SHORT).show()
-            }
-
-        }
+    override fun onClick(v: View?) {
+//        when(v?.id){
+//            R.id.keranjang ->{
+//                Toast.makeText(this,namajaringan +"telah dimasukkan ke keranjang ",Toast.LENGTH_SHORT).show()
+//            }
+//        }
     }
-    private fun setDetailInformation(jaringanName: String, jaringandetail: String?){
-        loadspek = findViewById(R.id.detail_spesifikasi)
-        loadspek.text = jaringanName.toString()
-
-    }
+//    private fun setDetailInformation(jaringanName: String, jaringandetail: String?){
+//        loadspek = findViewById(R.id.detail_spesifikasi)
+//        loadspek.text = jaringanName.toString()
+//
+//    }
 }
